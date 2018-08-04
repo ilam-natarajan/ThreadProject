@@ -1,0 +1,16 @@
+/.apt_generated/
+/target/
+/.settings/org.eclipse.jdt.core.prefs
+/.idea/
+/.project
+/.classpath
+/*.avi
+/.settings/
+/.factorypath
+/.idea/
+/.settings/org.eclipse.jdt.core.prefs
+/.settings/org.eclipse.wst.common.project.facet.core.prefs.xml
+/*.iml
+/*.xml
+**/.DS_Store
+/.iml
