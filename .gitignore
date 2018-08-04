@@ -12,5 +12,6 @@
 /.settings/org.eclipse.wst.common.project.facet.core.prefs.xml
 /*.iml
 /*.xml
+/.xml
 **/.DS_Store
 /.iml

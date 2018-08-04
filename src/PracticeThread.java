@@ -39,12 +39,6 @@ public class PracticeThread {
         catch(Exception e){
            System.out.println("Exception caught");
     }
-
-//commit 1
-        //commit 2
-        //commit 3
-//commit 4
-        //commit 5
-
+    
 }
 }
