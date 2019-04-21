@@ -5,48 +5,48 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class PracticeExecutorService {
-    public static void main(String[] args) throws InterruptedException {
-        ExecutorService service = Executors.newFixedThreadPool(2);
-        service.submit(new PathScanner());
-        service.submit(new Counter());
+  public static void main(String[] args) throws InterruptedException {
+    ExecutorService service = Executors.newFixedThreadPool(2);
+    service.submit(new PathScanner());
+    service.submit(new Counter());
 
-        service.shutdown();
-        service.awaitTermination(1, TimeUnit.DAYS);
+    service.shutdown();
+    service.awaitTermination(1, TimeUnit.DAYS);
 
-        System.exit(0);
+    System.exit(0);
+  }
+
+  public static class PathScanner implements Callable<Object> {
+
+    @Override
+    public Object call() throws Exception {
+      scan(new File("C:/"), 0);
+      return null;
     }
 
-    public static class PathScanner implements Callable<Object> {
+    protected void scan(File path, int deepth) {
+      if (deepth < 15) {
+        System.out.println("Scanning " + path + " at a deepth of " + deepth);
 
-        @Override
-        public Object call() throws Exception {
-            scan(new File("C:/"), 0);
-            return null;
+        File[] files = path.listFiles();
+        for (File file : files) {
+          if (file.isDirectory()) {
+            scan(file, ++deepth);
+          }
         }
-
-        protected void scan(File path, int deepth) {
-            if (deepth < 15) {
-                System.out.println("Scanning " + path + " at a deepth of " + deepth);
-
-                File[] files = path.listFiles();
-                for (File file : files) {
-                    if (file.isDirectory()) {
-                        scan(file, ++deepth);
-                    }
-                }
-            }
-        }
+      }
     }
-    public static class Counter implements Callable<Object> {
+  }
 
-        @Override
-        public Object call() throws Exception {
-            for (int index = 0; index < 10; index++) {
-                Thread.sleep(1);
-                System.out.println(index);
-            }
-            return null;
-        }
+  public static class Counter implements Callable<Object> {
+
+    @Override
+    public Object call() throws Exception {
+      for (int index = 0; index < 10; index++) {
+        Thread.sleep(1);
+        System.out.println(index);
+      }
+      return null;
     }
-
+  }
 }
